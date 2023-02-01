@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { createStackNavigator } from '@react-navigation/stack';
 import { Text, StyleSheet, View, Button, FlatList, Image, } from 'react-native';
 import { LinearGradient } from "expo-linear-gradient";
 import MinhHang from '../assets/images/minhang.png'
@@ -9,6 +10,7 @@ import start from '../assets/images/start.png'
 import hoatdong from '../assets/images/hoatdong.png'
 import quetma from '../assets/images/QR.png'
 import bottom from '../assets/images/bottom.png'
+
 export default class HomePage extends Component {
     render() {
         const { navigation } = this.props
@@ -23,7 +25,11 @@ export default class HomePage extends Component {
                 <Image style={styles.img} source= {MinhHang} /> 
                 <Image style={styles.imgT} source={Hinhtron}/>
                 <Image style={styles.imgChai} source={Chai}/>
-                <Image style={styles.imgStart} source={start}/>
+                <Image style={styles.imgStart} source={start}
+                    onPress ={()=>{
+                        navigation.navigate('Guide')
+                    }}
+                />
                 <Image style={styles.txthoatdong} source={hoatdong}/>
                 <Image style={styles.Qr} source={quetma}/>
                 <Text style={styles.txtXem}>Xem thêm</Text>
@@ -193,6 +199,6 @@ const styles = StyleSheet.create({
         width:420,
         height:20,
         marginTop:50
-      
+        
     }
 })

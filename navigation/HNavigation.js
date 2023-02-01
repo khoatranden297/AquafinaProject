@@ -1,14 +1,14 @@
 import { createStackNavigator } from '@react-navigation/stack';
 import { NavigationContainer } from '@react-navigation/native';
 import HomePage from '../screens/HomePage';
-
+import GuideScreen from '../screens/guideScreen';
 const Stack = createStackNavigator();
 
 function MyStackNavigation() {
   return (
     <Stack.Navigator>
       <Stack.Screen name="HomePage" component={HomePage} />
-     
+      <Stack.Screen name="Guide" component={GuideScreen} />
 
     </Stack.Navigator>
   );
@@ -16,7 +16,7 @@ function MyStackNavigation() {
 const HNavigation =()=>{
     return (
         <NavigationContainer>
-            <MyStackNavigation/>
+            <MyStackNavigation></MyStackNavigation>
         </NavigationContainer>
     )
 };

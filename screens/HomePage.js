@@ -10,6 +10,7 @@ import start from '../assets/images/start.png'
 import hoatdong from '../assets/images/hoatdong.png'
 import quetma from '../assets/images/QR.png'
 import bottom from '../assets/images/bottom.png'
+import kihieu from '../assets/images/kihieu.png'
 
 export default class HomePage extends Component {
     render() {
@@ -17,9 +18,10 @@ export default class HomePage extends Component {
         return (
             <View style={styles.home}>
 
-<               Image style={styles.logo} source= {logo} /> 
-                <Text style={styles.txtChao}>CHÀO MỪNG BẠN ĐẾN VỚI </Text>
+                <Image style={styles.logo} source= {logo} /> 
+                 <Text style={styles.txtChao}>CHÀO MỪNG BẠN ĐẾN VỚI </Text>
                 <Text style={styles.txtTram}>TRẠM TÁI SINH</Text>
+                <Image style={styles.kihieu} source= {kihieu} /> 
                 <Text style={styles.txtCua}>CỦA AQUAFINA</Text>
                 <Text style={styles.txtNoi}>NƠI TÁI SINH DÒNG ĐỜI MỚI CHO CHAI NHỰA</Text>
                 <Image style={styles.img} source= {MinhHang} /> 
@@ -199,6 +201,14 @@ const styles = StyleSheet.create({
         width:420,
         height:20,
         marginTop:50
+        
+    },
+    kihieu:{
+        position:'absolute',
+        width:100,
+        height:60,
+        marginLeft:55,
+        marginTop:75,
         
     }
 })

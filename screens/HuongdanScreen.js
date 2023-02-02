@@ -9,7 +9,7 @@ import khung2 from '../assets/images/khung2.png'
 import khung3 from '../assets/images/khung3.png'
 import huongdan from '../assets/images/huongdan.png'
 import xacnhan from '../assets/images/xacnhan.png'
-export default class guideScreen extends Component {
+export default class HuongdanScreen extends Component {
   render() {
     const {navigation} =  this.props;
     return (

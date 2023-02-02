@@ -94,7 +94,8 @@ txtTram:{
   fontWeight:"900",
   textAlign:"center",
   color:"#1545A5"
-},txtTaiSinh:{
+},
+txtTaiSinh:{
   position:"absolute",
   width:100,
   height:80,

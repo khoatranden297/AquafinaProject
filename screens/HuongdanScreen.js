@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import 'react-native-gesture-handler';
 import { Text, StyleSheet, View, Image } from 'react-native'
 import logo from '../assets/images/logo.png'
 import kihieu from '../assets/images/kihieuGuide.png'

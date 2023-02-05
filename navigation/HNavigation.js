@@ -9,22 +9,24 @@ const Stack = createStackNavigator();
 
 function MyStackNavigation() {
   return (
+
     <Stack.Navigator>
       <Stack.Screen name="Loading1" component={Load1Screen} />
-      <Stack.Screen name="Loading" component={LoadingScreen} />
+      {/* <Stack.Screen name="Home" component={HomePage} />
       <Stack.Screen name="Start" component={StartScreen} />
-      <Stack.Screen name="HomePage" component={HomePage} />
-      <Stack.Screen name="Huongdan" component={HuongdanScreen} />
-    
+      <Stack.Screen name="Loading" component={LoadingScreen} />
+      <Stack.Screen name="Huongdan" component={HuongdanScreen} /> */}
+
 
     </Stack.Navigator>
+
   );
 }
-const HNavigation =()=>{
-    return (
-        <NavigationContainer>
-            <MyStackNavigation></MyStackNavigation>
-        </NavigationContainer>
-    )
+const HNavigation = () => {
+  return (
+    <NavigationContainer>
+      <MyStackNavigation></MyStackNavigation>
+    </NavigationContainer>
+  )
 };
 export default HNavigation;

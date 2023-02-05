@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
-import { createStackNavigator } from '@react-navigation/stack';
-import { Text, StyleSheet, View, Button, FlatList, Image, } from 'react-native';
+import { useNavigation } from '@react-navigation/native';
+import { createStackNavigator, } from '@react-navigation/stack';
+import { Text, StyleSheet, View, Button, FlatList, Image,TouchableOpacity } from 'react-native';
 import { LinearGradient } from "expo-linear-gradient";
 import MinhHang from '../assets/images/minhang.png'
 import Hinhtron from '../assets/images/hinhtron1.png'
@@ -11,10 +12,10 @@ import hoatdong from '../assets/images/hoatdong.png'
 import quetma from '../assets/images/QR.png'
 import bottom from '../assets/images/bottom.png'
 import kihieu from '../assets/images/kihieu.png'
-
-export default class HomePage extends Component {
-    render() {
-        const { navigation } = this.props
+import muiten from '../assets/images/muiten.png'
+import { drop } from 'lodash';
+ const HomePage =({navigation})=> {
+   
         return (
             <View style={styles.home}>
 
@@ -27,11 +28,17 @@ export default class HomePage extends Component {
                 <Image style={styles.img} source= {MinhHang} /> 
                 <Image style={styles.imgT} source={Hinhtron}/>
                 <Image style={styles.imgChai} source={Chai}/>
-                <Image style={styles.imgStart} source={start}
-                    onPress ={()=>{
-                        navigation.navigate('Guide')
+
+                <Image style={styles.imgStart} source={start}/>
+                <Image style={styles.imgmuiten} source={muiten}/>
+                <TouchableOpacity style={styles.btnB}
+                    onPress={()=>{
+                        navigation.navigate("Huongdan")
+                        console.log("click")
                     }}
-                />
+                >
+                    <Text style={styles.txtB}>BẮT ĐẦU</Text>
+                </TouchableOpacity>
                 <Image style={styles.txthoatdong} source={hoatdong}/>
                 <Image style={styles.Qr} source={quetma}/>
                 <Text style={styles.txtXem}>Xem thêm</Text>
@@ -43,7 +50,8 @@ export default class HomePage extends Component {
 
         )
     }
-}
+
+export default HomePage
 const styles = StyleSheet.create({
     home: {
         position: "absolute",
@@ -210,5 +218,45 @@ const styles = StyleSheet.create({
         marginLeft:55,
         marginTop:75,
         
+    },
+    imgmuiten:{
+        position:'absolute',
+        width:200,
+        height:200,
+        marginLeft:120,
+        marginRight:28,
+        marginTop:450,
+    },
+    btnB:{
+        position: "absolute",
+        width: 140,
+        height: 140,
+        marginLeft: 150,
+        marginTop: 480,
+        backgroundColor: "#0047BA",
+        borderRadius: 100,
+        boxShadow:"0px 0px 17.8665px #C3CEDF",
+        shadowColor: "rgba(155, 192, 255, 0.77)",
+        shadowOffset: {
+            width: 0,
+            height: 2,
+        },
+        shadowOpacity: 0.25,
+        shadowRadius: 3.84,
+
+        elevation: 5,
+    },
+    txtB:{
+        position: "absolute",
+        width: 100,
+        height: 100,
+        fontStyle: "normal",
+        fontWeight: "500",
+        fontSize: 30,
+        marginLeft: 20,
+        marginTop: 30,
+        textAlign: "center",
+        color: "#FFFFFF",
+        fontWeight:"900",
     }
 })

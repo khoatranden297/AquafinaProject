@@ -37,6 +37,14 @@ const LoadingScreen1 = ({ navigation }) => {
                     {/* <Image style={styles.imgHT} source={hinhtron} /> */}
                     <Text style={styles.txtT}>TÍCH ĐIỂM</Text>
                 </TouchableOpacity>
+                <TouchableOpacity style={styles.btnK}
+                    onPress={() =>
+                    console.log("OK")
+                }
+                >
+                    {/* <Image style={styles.imgHT} source={hinhtron} /> */}
+                    <Text style={styles.txtK}>KHÔNG</Text>
+                </TouchableOpacity>
           </View>
         </View>
       </Modal>
@@ -454,5 +462,42 @@ const styles = StyleSheet.create({
         color: "#FFFFFF",
         display:"flex",
         fontWeight: "900",
-    }
+    },
+    btnK: {
+        position: "absolute",
+        width: 100,
+        height: 100,
+        marginLeft: 150,
+        marginTop: 450,
+        backgroundColor: "#F2F4F5",
+        borderRadius: 100,
+        boxShadow: "0px 0px 20px #C3CEDF",
+        shadowColor: "radial-gradient(121.14% 387.79% at 16.35% -42.71%, #DADADA 0%, #DADADA 93.31%)",
+        shadowOffset: {
+            width: 0,
+            height: 2,
+          },
+          shadowOpacity: 0.25,
+          shadowRadius: 3.84,
+      
+          elevation: 5,
+        },
+        txtK:{
+            position: "absolute",
+            width: 130,
+            height: 120,
+            fontStyle: "normal",
+            fontWeight: "500",
+            fontSize: 20,
+            paddingRight:25,
+            marginTop: 40,
+            fontStyle:"normal",
+            alignItems:"center",
+            textAlign: "center",
+            color: "#1545A5",
+            display:"flex",
+            fontWeight: "900",
+        },
+    
+
 })

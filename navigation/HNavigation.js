@@ -11,11 +11,13 @@ function MyStackNavigation() {
   return (
 
     <Stack.Navigator>
-      <Stack.Screen name="Loading1" component={Load1Screen} />
-      {/* <Stack.Screen name="Home" component={HomePage} />
+      
+      <Stack.Screen name="Home" component={HomePage} />
       <Stack.Screen name="Start" component={StartScreen} />
       <Stack.Screen name="Loading" component={LoadingScreen} />
-      <Stack.Screen name="Huongdan" component={HuongdanScreen} /> */}
+      <Stack.Screen name="Loading1" component={Load1Screen} />
+      <Stack.Screen name="Huongdan" component={HuongdanScreen} />
+
 
 
     </Stack.Navigator>

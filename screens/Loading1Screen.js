@@ -30,16 +30,22 @@ const LoadingScreen1 = ({ navigation }) => {
              <Image style={styles.imgStartM} source={xacnhan} />
                 <Image style={styles.imgmuitenM} source={muiten} />
                 <TouchableOpacity style={styles.btnT}
-                    onPress={() =>
+                    onPress={() =>{
+                         navigation.navigate("Quetma")
+                         setModalVisible(!modalVisible)
                     console.log("OK")
+                    }
                 }
                 >
                     {/* <Image style={styles.imgHT} source={hinhtron} /> */}
                     <Text style={styles.txtT}>TÍCH ĐIỂM</Text>
                 </TouchableOpacity>
                 <TouchableOpacity style={styles.btnK}
-                    onPress={() =>
+                    onPress={() =>{
+                    setModalVisible(!modalVisible)
+
                     console.log("OK")
+                    }
                 }
                 >
                     {/* <Image style={styles.imgHT} source={hinhtron} /> */}

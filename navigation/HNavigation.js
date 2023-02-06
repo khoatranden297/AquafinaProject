@@ -5,6 +5,7 @@ import HuongdanScreen from '../screens/HuongdanScreen';
 import StartScreen from '../screens/StartScreen';
 import LoadingScreen from '../screens/LoadingScreen';
 import Load1Screen from '../screens/Loading1Screen';
+import QuetmaScreen from '../screens/QuetmaScreen';
 const Stack = createStackNavigator();
 
 function MyStackNavigation() {
@@ -17,6 +18,8 @@ function MyStackNavigation() {
       <Stack.Screen name="Loading" component={LoadingScreen} />
       <Stack.Screen name="Loading1" component={Load1Screen} />
       <Stack.Screen name="Huongdan" component={HuongdanScreen} />
+      <Stack.Screen name="Quetma" component={QuetmaScreen} />
+      
 
 
 

@@ -34,7 +34,7 @@ const QuetmaScreen =({navigation})=>{
 
                 <TouchableOpacity style={styles.btnB}
                     onPress={() => {
-                        navigation.navigate("Home")
+                        navigation.navigate("Thankyou")
                         console.log("hello")
                     }}
                 >

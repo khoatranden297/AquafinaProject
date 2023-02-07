@@ -42,8 +42,8 @@ const LoadingScreen1 = ({ navigation }) => {
                 </TouchableOpacity>
                 <TouchableOpacity style={styles.btnK}
                     onPress={() =>{
-                    setModalVisible(!modalVisible)
-
+                    navigation.navigate('Thankyou')
+                    setModalVisible(!modalVisible);
                     console.log("OK")
                     }
                 }

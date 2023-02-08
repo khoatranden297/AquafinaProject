@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState,useRef,useEffect } from 'react'
 
 import { Text, StyleSheet, View, Image, TouchableOpacity ,Modal,Pressable} from 'react-native'
 import logo from '../assets/images/logo.png'
@@ -11,6 +11,20 @@ import xacnhan from '../assets/images/start.png'
 import muiten from '../assets/images/muiten.png'
 const LoadingScreen1 = ({ navigation }) => {
     const [modalVisible, setModalVisible] = useState(false);
+    const [countdown, setCountdown] = useState(10)
+    const timeId = useRef()
+    useEffect(()=>{
+       timeId.current = setInterval(()=>{
+        setCountdown(prevState => prevState-1)
+      },1000)
+  
+    },[])
+    useEffect(()=>{
+      if(countdown<=0){
+        clearInterval(timeId.current)
+        setModalVisible(!modalVisible);
+      }
+    },[countdown])
     return (
         
         <View style={styles.bck}>
@@ -69,7 +83,7 @@ const LoadingScreen1 = ({ navigation }) => {
                 <Text style={styles.txtCua}>của AQUAFINA</Text>
                 <Image style={styles.khung1} source={Aqua} />
                 <Text style={styles.txt2}>Tự động kết thúc sau:</Text>
-                <Text style={styles.txt3}>30 giây nữa </Text>
+                <Text style={styles.txt3}>{countdown} giây nữa </Text>
                 <View style={styles.circle}>
                     <View style={styles.circle2}>
                         <Text style={styles.txt30}>30</Text>

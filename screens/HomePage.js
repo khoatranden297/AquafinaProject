@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component,useRef } from 'react';
 import { useNavigation } from '@react-navigation/native';
 import { createStackNavigator, } from '@react-navigation/stack';
 import { Text, StyleSheet, View, Button, FlatList, Image,TouchableOpacity } from 'react-native';
@@ -15,7 +15,7 @@ import kihieu from '../assets/images/kihieu.png'
 import muiten from '../assets/images/muiten.png'
 import { drop } from 'lodash';
  const HomePage =({navigation})=> {
-   
+        const timeId = useRef()
         return (
             <View style={styles.home}>
 
@@ -33,6 +33,7 @@ import { drop } from 'lodash';
                 <Image style={styles.imgmuiten} source={muiten}/>
                 <TouchableOpacity style={styles.btnB}
                     onPress={()=>{
+                        // clearInterval(timeId.current)
                         navigation.navigate("Huongdan")
                         console.log("click")
                     }}

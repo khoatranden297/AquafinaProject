@@ -1,24 +1,42 @@
-import React, { Component } from 'react'
-import { Text, StyleSheet, View, Image ,TouchableOpacity} from 'react-native'
+import React, { Component, useEffect, useState, useRef } from 'react'
+import { Text, StyleSheet, View, Image, TouchableOpacity, Modal, Pressable } from 'react-native'
 import logo from '../assets/images/logo.png'
 import kihieu from '../assets/images/kihieuGuide.png'
 import locxoay from '../assets/images/kihieu.png'
+import locxoay1 from '../assets/images/kihieu.png'
 import hinhSp from '../assets/images/hinhSp.png'
 import ketthuc from '../assets/images/hinhtronsuot.png'
-import muiten from'../assets/images/muitensuot.png'
+import muiten from '../assets/images/muitensuot.png'
+import canhbao from '../assets/images/canhbao.png'
 import bien from '../assets/images/bien.png'
+import xacnhan from '../assets/images/start.png'
 const StartScreen = ({ navigation }) => {
+  const [countdown, setCountdown] = useState(10)
+  const timeId = useRef()
+  const [showTime,setShowTime]= useState(false)
+  useEffect(()=>{
+     timeId.current = setInterval(()=>{
+      setCountdown(prevState => prevState-1)
+    },1000)
 
+  },[])
+  useEffect(()=>{
+    if(countdown<=0){
+      clearInterval(timeId.current)
+      navigation.navigate('Loading')
+    }
+  },[countdown])
   return (
     <View style={styles.bck}>
+      
       <Image style={styles.logo} source={logo} />
       <Text style={styles.txt1}>HÃY CHO CHAI RỖNG VÀO MÁY</Text>
       <View style={styles.container}>
         <Image style={styles.kihieu} source={kihieu} />
-        <TouchableOpacity onPress={()=>{
+        <TouchableOpacity onPress={() => {
           navigation.goBack()
         }}>
-        <Text style={styles.txtHuongdan}>Xem lại hướng dẫn </Text>
+          <Text style={styles.txtHuongdan}>Xem lại hướng dẫn </Text>
         </TouchableOpacity>
         <Text style={styles.txtTram}>TRẠM</Text>
         <Image style={styles.locxoay} source={locxoay} />
@@ -27,21 +45,22 @@ const StartScreen = ({ navigation }) => {
         <Image style={styles.hinhSp} source={hinhSp} />
         <Text style={styles.txtLL}>Lần lượt bỏ từng chai nhựa rỗng vào ô bên trái</Text>
         <Text style={styles.txt2}>Tự động kết thúc sau:</Text>
-        <Text style={styles.txt3}>30 giây nữa </Text>
+        <Text style={styles.txt3}>{countdown} giây nữa </Text>
         {/* <Image style={styles.bck1} source={bien} /> */}
         <Image style={styles.imgStart} source={ketthuc} />
         <Image style={styles.imgmuiten} source={muiten} />
-        
+
         <TouchableOpacity style={styles.btnB}
           onPress={() => {
-            navigation.navigate("Loading")
+            clearInterval(timeId.current)
+            navigation.navigate('Loading')
             console.log("hello")
           }}
         >
-          
+
           {/* <Image style={styles.imgHT} source={hinhtron} /> */}
           <Text style={styles.txtB}>KẾT THÚC</Text>
-         
+
         </TouchableOpacity>
       </View>
     </View>
@@ -229,13 +248,13 @@ const styles = StyleSheet.create({
     fontStyle: "normal",
     fontWeight: "500",
     fontSize: 20,
-    paddingRight:10,
+    paddingRight: 10,
     marginTop: 18,
-    fontStyle:"normal",
-    alignItems:"center",
+    fontStyle: "normal",
+    alignItems: "center",
     textAlign: "center",
     color: "#1545A5",
-    display:"flex",
+    display: "flex",
     fontWeight: "900",
   },
   imgStart: {
@@ -245,14 +264,14 @@ const styles = StyleSheet.create({
     marginLeft: 130,
     marginTop: 520,
   },
-  bck1:{
+  bck1: {
     position: "absolute",
     width: 90,
     height: 90,
     marginLeft: 150,
     marginTop: 540,
     backgroundColor: "#E6EDF9",
-    mixBlendMode:"soft-light",
+    mixBlendMode: "soft-light",
     borderRadius: 100,
     boxShadow: "0px 0px 15.4162px #C3CEDF",
     shadowColor: "rgba(155, 192, 255, 0.77)",
@@ -264,5 +283,313 @@ const styles = StyleSheet.create({
     shadowRadius: 3.84,
 
     elevation: 5,
-  }
+  },
+  centeredView: {
+
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+    marginTop: 5,
+  },
+  modalView: {
+    position: "absolute",
+    width: 400,
+    height: 350,
+    margin: 20,
+    backgroundColor: 'white',
+    borderRadius: 20,
+    padding: 35,
+    alignItems: 'center',
+    shadowColor: '#000',
+    shadowOffset: {
+      width: 0,
+      height: 2,
+    },
+    shadowOpacity: 2,
+    shadowRadius: 4,
+    elevation: 5,
+  },
+  button: {
+    borderRadius: 20,
+    padding: 10,
+    elevation: 2,
+  },
+  buttonOpen: {
+    backgroundColor: '#F194FF',
+  },
+  buttonClose: {
+    backgroundColor: '#2196F3',
+  },
+  textStyle: {
+    color: 'white',
+    fontWeight: 'bold',
+    textAlign: 'center',
+  },
+  modalText: {
+    width: 250,
+    height: 150,
+    position: "absolute",
+    marginTop: 20,
+    fontSize: 25,
+    fontStyle: "normal",
+    fontWeight: "700",
+    display: "flex",
+    textAlign: "center",
+    alignItems: "center",
+    textAlign: 'center',
+    color: "#1545A5"
+  },
+  kihieuModal: {
+    position: "absolute",
+    width: 400,
+    height: 350,
+    marginLeft: 1,
+
+
+  },
+  txtcode: {
+    width: 250,
+    height: 150,
+    position: "absolute",
+    marginTop: 80,
+    fontSize: 20,
+    fontStyle: "normal",
+    fontWeight: "400",
+    display: "flex",
+    textAlign: "center",
+    alignItems: "center",
+    textAlign: 'center',
+    color: "#707172"
+  },
+  imgStartM: {
+    position: 'absolute',
+    width: 180,
+    height: 180,
+    marginLeft: 130,
+    marginRight: 28,
+    marginTop: 130,
+  },
+  imgmuitenM: {
+    position: 'absolute',
+    width: 180,
+    height: 180,
+    marginLeft: 130,
+    marginRight: 28,
+    marginTop: 130
+  },
+  btnT: {
+    position: "absolute",
+    width: 120,
+    height: 120,
+    marginLeft: 150,
+    marginTop: 160,
+    backgroundColor: "#0047BA",
+    borderRadius: 100,
+    boxShadow: "0px 0px 17.8665px #C3CEDF",
+    shadowColor: "rgba(155, 192, 255, 0.77)",
+    shadowOffset: {
+      width: 0,
+      height: 2,
+    },
+    shadowOpacity: 0.25,
+    shadowRadius: 3.84,
+
+    elevation: 5,
+  },
+  txtT: {
+    position: "absolute",
+    width: 130,
+    height: 120,
+    fontStyle: "normal",
+    fontWeight: "500",
+    fontSize: 25,
+    paddingRight: 8,
+    marginTop: 30,
+    fontStyle: "normal",
+    alignItems: "center",
+    textAlign: "center",
+    color: "#FFFFFF",
+    display: "flex",
+    fontWeight: "900",
+  },
+  btnK: {
+    position: "absolute",
+    width: 100,
+    height: 100,
+    marginLeft: 150,
+    marginTop: 450,
+    backgroundColor: "#F2F4F5",
+    borderRadius: 100,
+    boxShadow: "0px 0px 20px #C3CEDF",
+    shadowColor: "radial-gradient(121.14% 387.79% at 16.35% -42.71%, #DADADA 0%, #DADADA 93.31%)",
+    shadowOffset: {
+      width: 0,
+      height: 2,
+    },
+    shadowOpacity: 0.25,
+    shadowRadius: 3.84,
+
+    elevation: 5,
+  },
+  txtK: {
+    position: "absolute",
+    width: 130,
+    height: 120,
+    fontStyle: "normal",
+    fontWeight: "500",
+    fontSize: 20,
+    paddingRight: 25,
+    marginTop: 40,
+    fontStyle: "normal",
+    alignItems: "center",
+    textAlign: "center",
+    color: "#1545A5",
+    display: "flex",
+    fontWeight: "900",
+  },
+  txtTram1: {
+    position: "absolute",
+    width: 100,
+    height: 100,
+    marginLeft: 280,
+    marginTop: 10,
+    fontSize: 25,
+    fontWeight: "900",
+    textAlign: "center",
+    color: "#1545A5"
+  },
+  txtTaiSinh1: {
+    position: "absolute",
+    width: 100,
+    height: 80,
+    marginLeft: 280,
+    marginTop: 38,
+    fontSize: 20,
+    fontWeight: "900",
+    textAlign: "center",
+    color: "#1545A5"
+  },
+  txtCua1: {
+    position: "absolute",
+    width: 100,
+    height: 100,
+    marginLeft: 270,
+    marginTop: 60,
+    fontSize: 13,
+    fontWeight: "450",
+    textAlign: "center",
+    color: "#1545A5"
+  },
+  locxoay1: {
+    position: 'absolute',
+    width: 100,
+    height: 30,
+    paddingRight:"100%",
+    marginTop: 15,
+
+  },
+  txtE:{
+    fontStyle:"normal",
+    fontWeight:"700", 
+    fontSize:25,
+    marginTop:50,
+    textAlign:"center",
+    color:"#1545A5",
+  },
+  txtS:{
+    
+    position:"absolute",
+    width:380,
+    height:70,
+    fontStyle:"normal",
+    fontWeight:"400", 
+    fontSize:22,
+    marginTop:120,
+    
+    textAlign:"center",
+    color:"#707172",
+  },
+  txtBack:{
+    position:"absolute",
+    width:500,
+    height:80,
+    fontStyle:"normal",
+    fontWeight:"400", 
+    fontSize:20,
+    paddingRight:130,
+    marginTop:200,
+    textAlign:"center",
+    color:"#707172",
+  },
+ txtTime:{
+   position: "absolute",
+    width: 370,
+    height: 100,
+    paddingLeft:250,
+    marginTop: 200,
+    fontSize: 20,
+    fontWeight: "900",
+    textAlign: "center",
+    color: "#FA4238",
+},
+btnHome:{
+  width:180,
+  height:50,
+  position:"absolute",
+  marginTop:520,
+  marginLeft:10,
+  backgroundColor:"#DADADA",
+  borderRadius:15,
+  boxShadow: "0px 0px 17.8665px #C3CEDF",
+  shadowColor: "rgba(155, 192, 255, 0.77)",
+  shadowOffset: {
+    width: 0,
+    height: 2,
+  },
+  shadowOpacity: 3,
+  shadowRadius: 3.84,
+
+  elevation: 5,
+},
+txtBtn:{
+  position: "absolute",
+    width: 370,
+    height: 100,
+    paddingRight:185,
+    marginTop: 10,
+    fontSize: 20,
+    fontWeight: "900",
+    textAlign: "center",
+    color: "#336CC8",
+    
+},btnThem:{
+  width:180,
+  height:50,
+  position:"absolute",
+  marginTop:520,
+  marginLeft:210,
+  backgroundColor:"#1545A5",
+  borderRadius:15,
+  boxShadow: "0px 0px 17.8665px #C3CEDF",
+  shadowColor: "rgba(155, 192, 255, 0.77)",
+  shadowOffset: {
+    width: 0,
+    height: 2,
+  },
+  shadowOpacity: 3,
+  shadowRadius: 3.84,
+
+  elevation: 5,
+},
+txtBtn1:{
+  position: "absolute",
+    width: 370,
+    height: 100,
+    paddingRight:190,
+    marginTop: 12,
+    fontSize: 18,
+    fontWeight: "900",
+    textAlign: "center",
+    color: "#FFFFFF",
+},
 })

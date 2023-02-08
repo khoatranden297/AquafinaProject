@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState,useEffect,useRef } from 'react'
 
 import { Text, StyleSheet, View, Image, TouchableOpacity ,Modal,Pressable} from 'react-native'
 import logo from '../assets/images/logo.png'
@@ -10,6 +10,20 @@ import muiten from '../assets/images/muiten.png'
 import maQr from '../assets/images/maQr.png'
 import txtQr from '../assets/images/txtQr.png'
 const QuetmaScreen =({navigation})=>{
+    const [countdown, setCountdown] = useState(10)
+    const timeId = useRef()
+    useEffect(()=>{
+       timeId.current = setInterval(()=>{
+        setCountdown(prevState => prevState-1)
+      },1000)
+  
+    },[])
+    useEffect(()=>{
+      if(countdown<=0){
+        clearInterval(timeId.current)
+        navigation.navigate('Popup')
+      }
+    },[countdown])
     return(
         <View style={styles.bck}>
         <Image style={styles.logo} source={logo} />
@@ -28,12 +42,13 @@ const QuetmaScreen =({navigation})=>{
                 <Image style={styles.imgtxt} source ={txtQr}/>
                 <Image style={styles.imgmaQr} source = {maQr}/>
                 <Text style={styles.txtthoigian}>Thời gian quét QR còn:</Text>
-                <Text style={styles.txtgiay}>30 giây nữa </Text>
+                <Text style={styles.txtgiay}>{countdown} giây nữa </Text>
                 <Image style={styles.imgStart} source={xacnhan} />
                 <Image style={styles.imgmuiten} source={muiten} />
 
                 <TouchableOpacity style={styles.btnB}
                     onPress={() => {
+                        clearInterval(timeId.current)
                         navigation.navigate("Thankyou")
                         console.log("hello")
                     }}

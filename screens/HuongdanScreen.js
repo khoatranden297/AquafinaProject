@@ -173,7 +173,7 @@ const styles = StyleSheet.create({
   huongdan: {
     position: "absolute",
     width: 350,
-    height: 40,
+    height: 45,
     marginLeft: 20,
     marginTop: 430,
   },

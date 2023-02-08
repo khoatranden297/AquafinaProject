@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+import React, { Component,useEffect,useState,useRef } from 'react'
 
 import { Text, StyleSheet, View, Image, TouchableOpacity } from 'react-native'
 import logo from '../assets/images/logo.png'
@@ -10,7 +10,20 @@ import hoantat from '../assets/images/hoantat.png'
 import xacnhan from '../assets/images/hinhtronsuot.png'
 import muiten from '../assets/images/muitensuot.png'
 const LoadingScreen = ({ navigation }) => {
+    const [countdown, setCountdown] = useState(10)
+  const timeId = useRef()
+  useEffect(()=>{
+     timeId.current = setInterval(()=>{
+      setCountdown(prevState => prevState-1)
+    },1000)
 
+  },[])
+  useEffect(()=>{
+    if(countdown<=0){
+      clearInterval(timeId.current)
+      navigation.navigate('Loading1')
+    }
+  },[countdown])
     return (
         <View style={styles.bck}>
             <Image style={styles.logo} source={logo} />
@@ -28,7 +41,7 @@ const LoadingScreen = ({ navigation }) => {
                 <Text style={styles.txtCua}>của AQUAFINA</Text>
                 <Image style={styles.khung1} source={Aqua} />
                 <Text style={styles.txt2}>Tự động kết thúc sau:</Text>
-                <Text style={styles.txt3}>30 giây nữa </Text>
+                <Text style={styles.txt3}>{countdown} giây nữa </Text>
                 <View style={styles.circle}>
                     <View style={styles.circle2}>
                         <Text style={styles.txt30}>30</Text>
@@ -40,6 +53,7 @@ const LoadingScreen = ({ navigation }) => {
 
                 <TouchableOpacity style={styles.btnB}
                     onPress={() => {
+                        clearInterval(timeId.current)
                         navigation.navigate("Loading1")
                         console.log("hello")
                     }}
